@@ -5,7 +5,7 @@ Feature:Test of regristration of users
     When I fill in the correct member details
     Then I successfully become a member
 
-  #Scenario: Add new user but lastname is missing
+  Scenario: Add new user but lastname is missing
     Given I am on basketballengland.co.uk
     When I fill in the correct member details
     And  I remove "lastname"
