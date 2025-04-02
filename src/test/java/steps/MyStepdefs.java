@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -47,29 +48,19 @@ public class MyStepdefs {
 
         //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".inc"))));
         driver.findElement(By.cssSelector("label[for='sign_up_25'] span[class='box']")).click(); //I have read, understood Terms and Conditions
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".inc"))));
+        //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".inc"))));
         System.out.println("I have read and understood Terms and Conditions");
         driver.findElement(By.cssSelector("label[for='sign_up_26'] span[class='box']")).click(); //I am aged over 18
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("label[for='sign_up_26'] span.check"))));
+        //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("label[for='sign_up_26'] span.inc"))));
         System.out.println("I am over 18");
         driver.findElement(By.cssSelector("label[for='fanmembersignup_agreetocodeofethicsandconduct'] span[class='box']")).click(); //I have read, Understood Code of conduct
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[for='fanmembersignup_agreetocodeofethicsandconduct'] .inc "))));
+        //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[for='fanmembersignup_agreetocodeofethicsandconduct'] .inc "))));
         System.out.println("I have read code of conduct");
-        driver.findElement(By.cssSelector(".btn")).click(); //Confirm and Join > Hoppa till ny sida
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".inc")));
-        //input[value='CONFIRM AND JOIN']
-        //label[for='sign_up_26'] span[class='check']
-        //label[for='sign_up_26'] span.check
 
     }
-
-    //    @Then("I successfully become a member")
-    //    public void iSuccessfullyBecomeAMember() {
-    //        assertEquals("THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND", driver.findElement(By.cssSelector("h2.gray")).getText());
-    //    }
     @Then("I successfully become a member")
     public void iSuccessfullyBecomeAMember() {
-        //wait.until(ExpectedConditions.visi)
+
         String expected = "THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND";
         String actual = driver.findElement(By.cssSelector("h2.gray")).getText();
         assertEquals(expected, actual);
@@ -85,9 +76,16 @@ public class MyStepdefs {
 
     @Then("I fail to become a new member")
     public void iFailToBecomeANewMember() {
+
     }
 
     @Given("I am on basketballengland.co.uk on {}")
     public void iAmOnBasketballenglandCoUkOn(String arg0) {
+    }
+
+    @And("I press Confirm and join")
+    public void iPressConfirmAndJoin() {
+        driver.findElement(By.cssSelector(".btn")).click(); //Confirm and Join > Hoppa till ny sida
+
     }
 }

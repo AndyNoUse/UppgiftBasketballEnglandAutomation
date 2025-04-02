@@ -3,13 +3,15 @@ Feature:Test of regristration of users
   Scenario: Add new user and everything works as expected
     Given I am on basketballengland.co.uk
     When I fill in the correct member details
+    And I press Confirm and join
     Then I successfully become a member
 
   Scenario: Add new user but lastname is missing
     Given I am on basketballengland.co.uk
     When I fill in the correct member details
     And  I remove "lastname"
-    Then I fail to become a new member
+    And I press Confirm and join
+    Then I fail to become a new member because "last name missing"
 
   #Scenario: Add new user but password does not match
     Given I am on basketballengland.co.uk
@@ -28,6 +30,7 @@ Feature:Test of regristration of users
       | chrome  |
       | firefox |
       | edge    |
+
 
     #På
     #https://membership.basketballengland.co.uk/NewSupporterAccount
