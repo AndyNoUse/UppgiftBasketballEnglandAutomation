@@ -11,18 +11,34 @@ Feature:Test of regristration of users
     When I fill in the correct member details
     And  I remove "lastname"
     And I press Confirm and join
-    Then I fail to become a new member because "last name missing"
+    Then I fail to become a new member because "Last Name is required"
 
-  #Scenario: Add new user but password does not match
+  Scenario: Add new user but password does not match
     Given I am on basketballengland.co.uk
+    When I fill in date of birth
+    And I fill in first name
+    And I fill in email and confirm email
+    And I fill in password
+    And I check I have read Terms and Conditions
+    And I check I am over 18
+    And I check I have read Code of Conduct
+    And I press Confirm and join
+    Then I fail to become a new member because "Password is not the same"
 
-
- # Scenario: Add new user Terms and conditions not accepted
+  Scenario: Add new user Terms and conditions not accepted
     Given I am on basketballengland.co.uk
-
+    When I fill in date of birth
+    And I fill in first name
+    And I fill in last name
+    And I fill in email and confirm email
+    And I fill in password and confirm password
+    And I check I am over 18
+    And I check I have read Code of Conduct
+    And I press Confirm and join
+    Then I fail to become a new member because "Terms and condtions are not accepted"
 
   Scenario Outline: Add new user and everything works as expected on different browsers
-    Given I am on basketballengland.co.uk on <browser>
+    Given I am on basketballengland.co.uk on "<browser>"
     When I fill in the correct member details
     Then I successfully become a member
     Examples:
@@ -30,6 +46,7 @@ Feature:Test of regristration of users
       | chrome  |
       | firefox |
       | edge    |
+      |firebox  |
 
 
     #På
