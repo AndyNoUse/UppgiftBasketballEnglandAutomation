@@ -127,6 +127,7 @@ public class MyStepdefs {
     public void iSuccessfullyBecomeAMember() {
         String expected = "THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND";
         String actual = driver.findElement(By.cssSelector("h2.gray")).getText();
+        System.out.println(actual);
         assertEquals(expected, actual);
         System.out.println("DET GICK!!!");
     }
@@ -156,12 +157,15 @@ public class MyStepdefs {
         switch (browser.toLowerCase()) {
             case "chrome":
                 driver = new ChromeDriver();
+                System.out.println("Chrome driver loaded");
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
+                System.out.println("Firefox driver loaded");
                 break;
             case "edge":
                 driver = new EdgeDriver();
+                System.out.println("Edge driver loaded");
                 break;
             default:
                 throw new IllegalArgumentException("Okänd webbläsare: " + browser);

@@ -39,14 +39,21 @@ Feature:Test of regristration of users
 
   Scenario Outline: Add new user and everything works as expected on different browsers
     Given I am on basketballengland.co.uk on "<browser>"
-    When I fill in the correct member details
+    When I fill in date of birth
+    And I fill in first name
+    And I fill in last name
+    And I fill in email and confirm email
+    And I fill in password and confirm password
+    And I check I have read Terms and Conditions
+    And I check I am over 18
+    And I check I have read Code of Conduct
+    And I press Confirm and join
     Then I successfully become a member
     Examples:
       | browser |
       | chrome  |
       | firefox |
       | edge    |
-      |firebox  |
 
 
     #På
