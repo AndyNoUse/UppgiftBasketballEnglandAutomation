@@ -51,10 +51,10 @@ Feature:Test of regristration of users
     And I press Confirm and join
     Then I successfully become a member
     Examples:
-      | browser |
-      | chrome  |
-      | firefox |
-      | edge    |
+      | browser | date of birth | first name | last name | email | password |
+      | chrome  |               |            |           |       |          |
+      | firefox |               |            |           |       |          |
+      | edge    |               |            |           |       |          |
 
 
     #På

@@ -116,8 +116,8 @@ public class MyStepdefs {
         System.out.println("I have read and understood Terms and Conditions");
     }
 
-    @And("I check I am over {int}")
-    public void iCheckIAmOver(int arg0) {
+    @And("I check I am over 18")
+    public void iCheckIAmOver() {
         driver.findElement(By.cssSelector("label[for='sign_up_26'] span[class='box']")).click(); //I am aged over 18
         System.out.println("I am over 18");
     }
