@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -22,7 +23,6 @@ public class MyStepdefs {
     private WebDriverWait wait;
     String testEmail = "test+" + System.currentTimeMillis() + "@mailnesia.com"; // Rewrite to a dynamic email
     String testPassword = "password";
-
 
     @After
     public void tearDown() {
@@ -67,13 +67,14 @@ public class MyStepdefs {
     public void iFailToBecomeANewMemberBecause(String expectedFailureMessage) {
         //.field-validation-error
         //[generated="true"]
-        System.out.println("Jag börjar med att försöka hitta 'span[for='member_lastname']'");
-        WebElement element = driver.findElement(By.cssSelector("span[for='member_lastname']"));
+        System.out.println("Jag börjar med att försöka hitta felmeddelandet");
+        //WebElement element = driver.findElement(By.cssSelector("span[for='member_lastname']"));
+        WebElement element = driver.findElement(By.cssSelector("span[generated=\"true\"]"));
         String actual = element.getText();
         System.out.println(actual);
-        assertEquals(expectedFailureMessage,actual);
+        assertEquals(expectedFailureMessage, actual);
 
-        System.out.println("Jag blev inte en medlem för att: "+actual);
+        System.out.println("Jag blev inte en medlem för att: " + actual);
 
     }
 
@@ -88,6 +89,7 @@ public class MyStepdefs {
         driver.findElement(By.cssSelector("input#member_firstname")).sendKeys("Urban"); //First Name
 
     }
+
     @And("I fill in last name")
     public void iFillInLastName() {
         driver.findElement(By.cssSelector("input#member_lastname")).sendKeys("Test"); //Last name
@@ -130,16 +132,21 @@ public class MyStepdefs {
     public void iPressConfirmAndJoin() {
         driver.findElement(By.cssSelector(".btn")).click(); //Confirm and Join > Hoppa till ny sida
         System.out.println("I press Confirm and join");
-
     }
 
     @Then("I successfully become a member")
     public void iSuccessfullyBecomeAMember() {
+        waitToBeDisplayed("h2.gray");
         String expected = "THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND";
         String actual = driver.findElement(By.cssSelector("h2.gray")).getText();
         System.out.println(actual);
         assertEquals(expected, actual);
         System.out.println("DET GICK!!!");
+    }
+
+    private WebElement waitToBeDisplayed(String css) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css)));
+
     }
 
     @When("I remove {string}")
@@ -172,10 +179,8 @@ public class MyStepdefs {
         driver.get("https://membership.basketballengland.co.uk/NewSupporterAccount");
     }
 
-
     @And("I fill in password")
     public void iFillInPassword() {
-        driver.findElement(By.cssSelector("#signupunlicenced_password")).sendKeys(testPassword); //Password
-
+        driver.findElement(By.cssSelector("#signupunlicenced_password")).sendKeys(testPassword); //Password only
     }
 }

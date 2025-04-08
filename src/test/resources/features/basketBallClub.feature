@@ -17,13 +17,14 @@ Feature:Test of regristration of users
     Given I am on basketballengland.co.uk
     When I fill in date of birth
     And I fill in first name
+    And I fill in last name
     And I fill in email and confirm email
     And I fill in password
     And I check I have read Terms and Conditions
     And I check I am over 18
     And I check I have read Code of Conduct
     And I press Confirm and join
-    Then I fail to become a new member because "Password is not the same"
+    Then I fail to become a new member because "Confirm Password is required"
 
   Scenario: Add new user Terms and conditions not accepted
     Given I am on basketballengland.co.uk
@@ -35,7 +36,7 @@ Feature:Test of regristration of users
     And I check I am over 18
     And I check I have read Code of Conduct
     And I press Confirm and join
-    Then I fail to become a new member because "Terms and condtions are not accepted"
+    Then I fail to become a new member because "You must confirm that you have read and accepted our Terms and Conditions"
 
   Scenario Outline: Add new user and everything works as expected on different browsers
     Given I am on basketballengland.co.uk on "<browser>"
@@ -67,14 +68,14 @@ Feature:Test of regristration of users
     #slides
 
     # ❖ Skapa användare – allt går som förväntat och ett konto skapas X
-    # ❖ Skapa användare – efternamn saknas
-    # ❖ Skapa användare – lösenord matchar inte
-    # ❖ Skapa användare – terms and conditions är inte godkänt
+    # ❖ Skapa användare – efternamn saknas                            X
+    # ❖ Skapa användare – lösenord matchar inte                       X
+    # ❖ Skapa användare – terms and conditions är inte godkänt        X
 
-    # ❖ Verifiering skall ske på varje scenario med minst en Junit assert
-    # ❖ Feature-filen skall vara skapad enligt BDD och innehålla en tydlig beskrivning
-    # ❖ Feature-filen skall kopplas till Selenium Webdriver-kod som utför testandet
+    # ❖ Verifiering skall ske på varje scenario med minst en Junit assert               X
+    # ❖ Feature-filen skall vara skapad enligt BDD och innehålla en tydlig beskrivning  X
+    # ❖ Feature-filen skall kopplas till Selenium Webdriver-kod som utför testandet     X
 
-  # ❖ Testfallen skall köras med minst en Scenario Outline
-  # ❖ Testfallen skall köras på minst två browsrar
-  # ❖ Skapa minst en privat metod som använder sig av explicit wait
+  # ❖ Testfallen skall köras med minst en Scenario Outline            X
+  # ❖ Testfallen skall köras på minst två browsrar                    X
+  # ❖ Skapa minst en privat metod som använder sig av explicit wait   X
