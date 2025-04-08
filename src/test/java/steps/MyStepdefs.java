@@ -64,7 +64,17 @@ public class MyStepdefs {
 
 
     @Then("I fail to become a new member because {string}")
-    public void iFailToBecomeANewMemberBecause(String arg0) {
+    public void iFailToBecomeANewMemberBecause(String expectedFailureMessage) {
+        //.field-validation-error
+        //[generated="true"]
+        System.out.println("Jag börjar med att försöka hitta 'span[for='member_lastname']'");
+        WebElement element = driver.findElement(By.cssSelector("span[for='member_lastname']"));
+        String actual = element.getText();
+        System.out.println(actual);
+        assertEquals(expectedFailureMessage,actual);
+
+        System.out.println("Jag blev inte en medlem för att: "+actual);
+
     }
 
     @When("I fill in date of birth")
@@ -138,19 +148,6 @@ public class MyStepdefs {
         System.out.println("I removed " + elementTobBeCleared);
     }
 
-    @Then("I fail to become a new member {string}")
-    public void iFailToBecomeANewMember(String expectedFailureMessage) {
-        //.field-validation-error
-        //[generated="true"]
-        System.out.println("Jag börjar med att försöka hitta 'span[for='member_lastname']'");
-        WebElement element = driver.findElement(By.cssSelector("span[for='member_lastname']"));
-        String actual = element.getText();
-        System.out.println(actual);
-        assertEquals(expectedFailureMessage,actual);
-
-        System.out.println("Jag blev inte en medlem för att: "+actual);
-
-    }
 
     @Given("I am on basketballengland.co.uk on {string}")
     public void iAmOnBasketballenglandCoUkOn(String browser) {
