@@ -38,23 +38,23 @@ Feature:Test of regristration of users
     And I press Confirm and join
     Then I fail to become a new member because "You must confirm that you have read and accepted our Terms and Conditions"
 
-  Scenario Outline: Add new user and everything works as expected on different browsers
+  Scenario Outline: Add new user and everything works but as Scenario Outline
     Given I am on basketballengland.co.uk on "<browser>"
-    When I fill in date of birth
-    And I fill in first name
-    And I fill in last name
+    When I fill in date of birth "<date of birth>"
+    And I fill in first name "<first name>"
+    And I fill in last name "<last name>"
     And I fill in email and confirm email
-    And I fill in password and confirm password
+    And I fill in password and confirm password "<password>"
     And I check I have read Terms and Conditions
     And I check I am over 18
     And I check I have read Code of Conduct
     And I press Confirm and join
     Then I successfully become a member
     Examples:
-      | browser | date of birth | first name | last name | email | password |
-      | chrome  |               |            |           |       |          |
-      | firefox |               |            |           |       |          |
-      | edge    |               |            |           |       |          |
+      | browser | date of birth | first name | last name | password          |
+      | chrome  | 07/01/1999    | Urban      | Testman   | password          |
+      | firefox | 06/12/1989    | Pröv       | Aren      | Passsign_up_25    |
+      | edge    | 31/09/1953    | Kval       | Itet      | span[class='box'] |
 
 
     #På
