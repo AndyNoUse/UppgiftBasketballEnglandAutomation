@@ -66,18 +66,19 @@ Feature:Test of regristration of users
     And I fill in email and confirm email
     And I fill in password "<password>"
     And I fill in confirmed password "<confirmed password>"
-    And I check I have read Terms and Conditions
+    And I check I have read Terms and Conditions "<terms accepted>"
     And I check I am over 18
     And I check I have read Code of Conduct
     And I press Confirm and join
     Then I fail to become a new member because "<error message>"
     Examples:
-      | browser | date of birth | first name | last name | password       | confirmed password | error message                |
-      | chrome  | 07/01/1999    |            | Testman   | password       | password           | First Name is required       |
-      | firefox | 06/12/1989    | Pröv       |           | Passsign_up_25 | Passsign_up_25     | Last Name is required        |
-      | edge    | 31/09/1953    | Kval       | Itet      |                | password           | Password is required         |
-      | crome   | 07/01/1999    | Urban      | Itet      | passpassword   | passpasspass       | Password did not match       |
-      | chrome  | 07/01/1999    | Urban      | Itet      | passpassword   |                    | Confirm Password is required |
+      | browser | date of birth | first name | last name | password       | confirmed password | terms accepted | error message                                                             |
+      | chrome  | 07/01/1999    |            | Testman   | password       | password           | true           | First Name is required                                                    |
+      | firefox | 06/12/1989    | Pröv       |           | Passsign_up_25 | Passsign_up_25     | true           | Last Name is required                                                     |
+      | edge    | 31/09/1953    | Kval       | Itet      |                | password           | true           | Password is required                                                      |
+      | crome   | 07/01/1999    | Urban      | Itet      | passpassword   | passpasspass       | true           | Password did not match                                                    |
+      | chrome  | 07/01/1999    | Urban      | Itet      | passpassword   |                    | true           | Confirm Password is required                                              |
+      | chrome  | 07/01/1999    | Urban      | Itet      | passpassword   | passpassword       | false          | You must confirm that you have read and accepted our Terms and Conditions |
     #På
     #https://membership.basketballengland.co.uk/NewSupporterAccount
     # sig som användare

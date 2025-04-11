@@ -218,4 +218,13 @@ public class MyStepdefs {
     public void iFillInConfirmedPassword(String confirmPassword) {
         driver.findElement(By.cssSelector("#signupunlicenced_confirmpassword")).sendKeys(confirmPassword);
     }
+
+    @And("I check I have read Terms and Conditions {string}")
+    public void iCheckIHaveReadTermsAndConditions(String terms) {
+        WebElement TermsAndConditonsBox = driver.findElement(By.cssSelector("label[for='sign_up_25']")); //I have read, understood Terms and Conditions
+        if (terms.trim().equalsIgnoreCase("true")) {
+            TermsAndConditonsBox.click();
+            System.out.println("I have read and understood Terms and Conditions");
+        }
+    }
 }
