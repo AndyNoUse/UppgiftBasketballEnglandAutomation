@@ -20,11 +20,12 @@ Feature:Test of regristration of users
     And I fill in last name
     And I fill in email and confirm email
     And I fill in password
+    And I fill in wrong confirmed password
     And I check I have read Terms and Conditions
     And I check I am over 18
     And I check I have read Code of Conduct
     And I press Confirm and join
-    Then I fail to become a new member because "Confirm Password is required"
+    Then I fail to become a new member because "Password did not match"
 
   Scenario: Add new user Terms and conditions not accepted
     Given I am on basketballengland.co.uk
@@ -52,11 +53,31 @@ Feature:Test of regristration of users
     Then I successfully become a member
     Examples:
       | browser | date of birth | first name | last name | password          |
-      | chrome  | 07/01/1999    | Urban      | Testman   | password          |
+      | chrome  | 07/01/1995    | Urban      | Testman   | password          |
       | firefox | 06/12/1989    | Pröv       | Aren      | Passsign_up_25    |
       | edge    | 31/09/1953    | Kval       | Itet      | span[class='box'] |
+      | crome   | 07/01/1999    | Urban      | Itet      | passpassword      |
 
-
+  Scenario Outline: Add new user and it fails
+    Given I am on basketballengland.co.uk on "<browser>"
+    When I fill in date of birth "<date of birth>"
+    And I fill in first name "<first name>"
+    And I fill in last name "<last name>"
+    And I fill in email and confirm email
+    And I fill in password "<password>"
+    And I fill in confirmed password "<confirmed password>"
+    And I check I have read Terms and Conditions
+    And I check I am over 18
+    And I check I have read Code of Conduct
+    And I press Confirm and join
+    Then I fail to become a new member because "<error message>"
+    Examples:
+      | browser | date of birth | first name | last name | password       | confirmed password | error message                |
+      | chrome  | 07/01/1999    |            | Testman   | password       | password           | First Name is required       |
+      | firefox | 06/12/1989    | Pröv       |           | Passsign_up_25 | Passsign_up_25     | Last Name is required        |
+      | edge    | 31/09/1953    | Kval       | Itet      |                | password           | Password is required         |
+      | crome   | 07/01/1999    | Urban      | Itet      | passpassword   | passpasspass       | Password did not match       |
+      | chrome  | 07/01/1999    | Urban      | Itet      | passpassword   |                    | Confirm Password is required |
     #På
     #https://membership.basketballengland.co.uk/NewSupporterAccount
     # sig som användare

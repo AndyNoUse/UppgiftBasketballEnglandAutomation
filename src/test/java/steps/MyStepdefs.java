@@ -63,7 +63,7 @@ public class MyStepdefs {
 
     @Then("I fail to become a new member because {string}")
     public void iFailToBecomeANewMemberBecause(String expectedFailureMessage) {
-        System.out.println("Jag börjar med att försöka hitta felmeddelandet");
+        //System.out.println("Jag börjar med att försöka hitta felmeddelandet");
         WebElement element = driver.findElement(By.cssSelector("span[generated=\"true\"]"));
         String actual = element.getText();
         //System.out.println(actual);
@@ -71,39 +71,33 @@ public class MyStepdefs {
         assertEquals(expectedFailureMessage, actual);
 
         System.out.println("Jag blev inte en medlem för att: " + actual);
-
     }
 
     @When("I fill in date of birth")
     public void iFillInDateOfBirth() {
         driver.findElement(By.cssSelector("input#dp")).sendKeys("07/01/1999"); //Date of Birth DD/MM/YYYY
-
     }
 
     @And("I fill in first name")
     public void iFillInFirstName() {
         driver.findElement(By.cssSelector("input#member_firstname")).sendKeys("Urban"); //First Name
-
     }
 
     @And("I fill in last name")
     public void iFillInLastName() {
         driver.findElement(By.cssSelector("input#member_lastname")).sendKeys("Test"); //Last name
-
     }
 
     @And("I fill in email and confirm email")
     public void iFillInEmailAndConfirmEmail() {
         driver.findElement(By.cssSelector("input#member_emailaddress")).sendKeys(testEmail);
         driver.findElement(By.cssSelector("input#member_confirmemailaddress")).sendKeys(testEmail);
-
     }
 
     @And("I fill in password and confirm password")
     public void iFillInPasswordAndConfirmPassword() {
         driver.findElement(By.cssSelector("#signupunlicenced_password")).sendKeys(testPassword);
         driver.findElement(By.cssSelector("#signupunlicenced_confirmpassword")).sendKeys(testPassword);
-
     }
 
     @And("I check I have read Terms and Conditions")
@@ -115,16 +109,15 @@ public class MyStepdefs {
 
     @And("I check I am over 18")
     public void iCheckIAmOver() {
-//        driver.findElement(By.cssSelector("label[for='sign_up_26'] span[class='box']")).click(); //I am aged over 18
+        //driver.findElement(By.cssSelector("label[for='sign_up_26'] span[class='box']")).click(); //I am aged over 18
         driver.findElement(By.cssSelector("label[for='sign_up_26']")).click(); //I am aged over 18
         System.out.println("I am over 18");
     }
 
     @And("I check I have read Code of Conduct")
     public void iCheckIHaveReadCodeOfConduct() {
-//        driver.findElement(By.cssSelector("label[for='fanmembersignup_agreetocodeofethicsandconduct'] span[class='box']")).click(); //I have read, Understood Code of conduct
+        //driver.findElement(By.cssSelector("label[for='fanmembersignup_agreetocodeofethicsandconduct'] span[class='box']")).click(); //I have read, Understood Code of conduct
         driver.findElement(By.cssSelector("label[for='fanmembersignup_agreetocodeofethicsandconduct']")).click(); //I have read, Understood Code of conduct
-
         System.out.println("I have read code of conduct");
     }
 
@@ -142,10 +135,15 @@ public class MyStepdefs {
         System.out.println(actual);
         assertEquals(expected, actual);
         System.out.println("DET GICK!!!");
+        //System.out.println(driver.findElement(By.cssSelector("div.portlet")).getText()); "We've sent you an email to verify your email address (check your junk/spam folder).
+        //Please make a note of your Membership Number, you will need this to log in.
+        //Your Basketball England Membership Number is:
+        //A128323
+        //GO TO MY LOCKER"
     }
 
     private void waitToBeDisplayed(String css) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css)));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(css)));
     }
 
     @When("I remove {string}")
@@ -153,7 +151,6 @@ public class MyStepdefs {
         driver.findElement(By.cssSelector("input#member_" + elementTobBeCleared)).clear(); //Last name
         System.out.println("I removed " + elementTobBeCleared);
     }
-
 
     @Given("I am on basketballengland.co.uk on {string}")
     public void iAmOnBasketballenglandCoUkOn(String browser) {
@@ -175,7 +172,6 @@ public class MyStepdefs {
                 driver = new ChromeDriver();
                 break;
             //throw new IllegalArgumentException("Okänd webbläsare: " + browser);
-
         }
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -195,19 +191,31 @@ public class MyStepdefs {
     @And("I fill in first name {string}")
     public void iFillInFirstName(String firstName) {
         driver.findElement(By.cssSelector("input#member_firstname")).sendKeys(firstName);
-
     }
 
     @And("I fill in last name {string}")
     public void iFillInLastName(String lastName) {
         driver.findElement(By.cssSelector("input#member_lastname")).sendKeys(lastName);
-
     }
 
     @And("I fill in password and confirm password {string}")
     public void iFillInPasswordAndConfirmPassword(String password) {
         driver.findElement(By.cssSelector("#signupunlicenced_password")).sendKeys(password);
         driver.findElement(By.cssSelector("#signupunlicenced_confirmpassword")).sendKeys(password);
+    }
 
+    @And("I fill in wrong confirmed password")
+    public void iFillInWrongConfirmedPassword() {
+        driver.findElement(By.cssSelector("#signupunlicenced_confirmpassword")).sendKeys("wrongpassword");
+    }
+
+    @And("I fill in password {string}")
+    public void iFillInPassword(String password) {
+        driver.findElement(By.cssSelector("#signupunlicenced_password")).sendKeys(password);
+    }
+
+    @And("I fill in confirmed password {string}")
+    public void iFillInConfirmedPassword(String confirmPassword) {
+        driver.findElement(By.cssSelector("#signupunlicenced_confirmpassword")).sendKeys(confirmPassword);
     }
 }
