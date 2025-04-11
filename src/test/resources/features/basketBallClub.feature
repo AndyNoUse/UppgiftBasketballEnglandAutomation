@@ -34,11 +34,12 @@ Feature:Test of regristration of users
     Then I fail to become a new member because "<error message>"
     Examples:
       | browser        | date of birth | first name | last name | password       | confirmed password | terms accepted | error message                                                             |
-      | chrome         | 06/12/1989    | Pröv       |           | Passsign_up_25 | Passsign_up_25     | true           | Last Name is required                                                     |
-      | firefox        | 06/12/1989    | Pröv       |           | Passsign_up_25 | Passsign_up_25     | true           | Last Name is required                                                     |
-      | fakeWebBrowser | 07/01/1999    | Urban      | Itet      | passpassword   | Wrongpassword      | true           | Password did not match                                                    |
+      | fakeWebBrowser | 06/12/1989    | Pröv       |           | Passsign_up_25 | Passsign_up_25     | true           | Last Name is required                                                     |
+      | firefox        | 07/01/1999    | Urban      | Itet      | passpassword   | Wrongpassword      | true           | Password did not match                                                    |
+      | chrome         | 07/01/1999    | Urban      | Itet      | passpassword   | Wrongpassword      | true           | Password did not match                                                    |
       | chrome         | 07/01/1999    | Urban      | Itet      | passpassword   |                    | true           | Confirm Password is required                                              |
       | chrome         | 07/01/1999    | Urban      | Itet      | passpassword   | passpassword       | false          | You must confirm that you have read and accepted our Terms and Conditions |
+      | edge           | 07/01/1999    | Urban      | Itet      | passpassword   | passpassword       | false          | You must confirm that you have read and accepted our Terms and Conditions |
       | chrome         | 07/01/1999    |            | Testman   | password       | password           | true           | First Name is required                                                    |
       | edge           | 31/09/1953    | Kval       | Itet      |                | password           | true           | Password is required                                                      |
 
