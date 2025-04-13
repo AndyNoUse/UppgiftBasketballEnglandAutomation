@@ -25,7 +25,7 @@ public class MyStepdefs {
 
     @After
     public void tearDown() throws InterruptedException {
-        Thread.sleep(2500);
+        //Thread.sleep(2500);
         if (driver != null) {
             driver.quit();
         }
